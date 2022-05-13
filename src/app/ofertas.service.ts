@@ -6,7 +6,7 @@ export class OfertaService {
         {
             id: 1,
             categoria: "restaurante",
-            titulo: "Super Burger",
+            titulo: "Super Burger BetoRaiz",
             descricao_oferta: "Rodízio de Mini-hambúrger com opção de entrada.",
             anunciante: "Original Burger",
             valor: 29.90,
@@ -54,8 +54,35 @@ export class OfertaService {
     ]
 
 
-
     public getOfertas(): Array<Oferta> {
         return this.ofertas
+    }
+
+    public getOfertas2(): Promise<Array<Oferta>> {
+        return new Promise((resolve, reject) => {
+            //algum tipo de processamento, que ao finalizar, chama a função resolve ou a função reject
+            // console.log('será que passou por aqui?')
+            let deu_certo = true
+            if(deu_certo){
+                setTimeout(() => resolve(this.ofertas), 3000)
+            } else {
+                reject({codigo_erro: 404, mensagem_erro: 'Servidor não encontrado XYZ'})
+            }
+        })
+        .then((ofertas: any) => {
+            //fazer alguma tentativa
+            console.log('primeiro then')
+            return ofertas
+        })
+        .then((ofertas: Oferta[]) => {
+            console.log('segundo then')
+            return new Promise((resolve2, reject2) => {
+                setTimeout(() => {resolve2(ofertas)},3000)
+            })
+        })
+        .then((ofertas: any) => {
+            console.log('terceiro then executado após 3 segundos porque estava aguardando uma promisse ser resolvida')
+            return ofertas
+        })
     }
 }
