@@ -77,7 +77,7 @@ export class OfertaService {
         .then((ofertas: Oferta[]) => {
             console.log('segundo then')
             return new Promise((resolve2, reject2) => {
-                setTimeout(() => {resolve2(ofertas)},3000)
+                setTimeout(() => {resolve2(ofertas)},3000) 
             })
         })
         .then((ofertas: any) => {
