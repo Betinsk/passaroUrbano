@@ -1,8 +1,22 @@
-import { Oferta } from "./shared/oferta.model"
+import { HttpClient } from "@angular/common/http"
+import { Injectable } from "@angular/core"
+import { lastValueFrom } from "rxjs";
+import { Oferta } from "./shared/oferta.model";
 
+@Injectable()
 export class OfertaService {
 
-    public ofertas: Oferta[] = [
+           constructor (private httpClient: HttpClient){
+
+           }
+
+           public getOfertas(): Promise<any> {
+            return lastValueFrom(this.httpClient.get('http://localhost:3000/ofertas'));
+          }
+
+  
+
+    /*public ofertas: Oferta[] = [
         {
             id: 1,
             categoria: "restaurante",
@@ -52,13 +66,10 @@ export class OfertaService {
             ]
         }
     ]
+*/
 
-
-    public getOfertas(): Array<Oferta> {
-        return this.ofertas
-    }
-
-    public getOfertas2(): Promise<Array<Oferta>> {
+  
+  /*  public getOfertas2(): Promise<Array<Oferta>> {
         return new Promise((resolve, reject) => {
             //algum tipo de processamento, que ao finalizar, chama a função resolve ou a função reject
             // console.log('será que passou por aqui?')
@@ -84,5 +95,5 @@ export class OfertaService {
             console.log('terceiro then executado após 3 segundos porque estava aguardando uma promisse ser resolvida')
             return ofertas
         })
-    }
+    }*/
 }
