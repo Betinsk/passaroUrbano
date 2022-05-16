@@ -6,6 +6,8 @@ import { Oferta } from "./shared/oferta.model";
 @Injectable()
 export class OfertaService {
 
+
+
            constructor (private httpClient: HttpClient){
 
            }
@@ -15,6 +17,10 @@ export class OfertaService {
           }
 
   
+
+          public getOfertasPorCategoria(categoria: string) : Promise<any> {
+              return lastValueFrom(this.httpClient.get(`http://localhost:3000/ofertas?categoria=${categoria}`)) //.then((resposta: any) => resposta.json())
+          }
 
     /*public ofertas: Oferta[] = [
         {
