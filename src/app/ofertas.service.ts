@@ -22,6 +22,7 @@ export class OfertaService {
               return lastValueFrom(this.httpClient.get(`http://localhost:3000/ofertas?categoria=${categoria}`)) //.then((resposta: any) => resposta.json())
           }
 
+
     /*public ofertas: Oferta[] = [
         {
             id: 1,
